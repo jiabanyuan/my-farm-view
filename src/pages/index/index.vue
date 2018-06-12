@@ -3,7 +3,7 @@
     <image class="background" mode="widthFix" src="/static/image/bgp.png"/>
 
     <!--<button class="button" @click="toMyFarm()"></button>-->
-    <button class="button" open-type="getUserInfo">{{text}}</button>
+    <button class="button" open-type="getUserInfo" @click="toMyFarm()">{{text}}</button>
 
     <button class="button" open-type="share">{{inviteFriend1}}</button>
 
