@@ -1,6 +1,6 @@
 <template>
   <div class="container" >
-    <image class="background" mode="widthFix" src="/static/image/bgp.png"/>
+    <image class="background" src="/static/image/logo.png"/>
 
     <!--<button class="button" @click="toMyFarm()"></button>-->
     <button class="button" open-type="getUserInfo" @click="toMyFarm()">{{text}}</button>
@@ -110,6 +110,10 @@ export default {
   display: inline-block;
   font-size: 16px;
   margin-top: 20px;
+}
+.background {
+  width: 100px;
+  height: 100px;
 }
 
 .form-control {
