@@ -1,12 +1,10 @@
 <template>
   <div class="container" >
-    <image class="background" src="/static/image/logo.png"/>
-
-    <!--<button class="button" @click="toMyFarm()"></button>-->
-    <button class="button" open-type="getUserInfo" @click="toMyFarm()">{{text}}</button>
-
-    <button class="button" open-type="share">{{inviteFriend1}}</button>
-
+    <image class="background" src="/static/image/first-page-mini.png"/>
+    <div class="page-button" >
+        <button class="button" open-type="getUserInfo" @click="toMyFarm()">{{text}}</button>
+        <button class="button" open-type="share">{{inviteFriend1}}</button>
+    </div>
   </div>
 </template>
 
@@ -73,7 +71,7 @@ export default {
   },
   onShareAppMessage (result) {
     let title = 'hello farm'
-    let path = '/pages/counter/main'
+    let path = '/pages/index/main'
     this.billId = 'billId-' + new Date().getTime()
     return {
       title,
@@ -81,11 +79,6 @@ export default {
       success: async (res) => {
         console.log(`分享成功，此次path为：${path}`)
         await this.$store.dispatch('createBill', { ...this.userInfo, ...this.billInfo })
-        // 上传图片
-        await this.$store.dispatch('uploadImg', {
-          billId: this.billId,
-          filePath: '/static/image/background.png'
-        })
         wx.redirectTo(`../join/main?billId=${this.billId}`)
       }
     }
@@ -110,10 +103,20 @@ export default {
   display: inline-block;
   font-size: 16px;
   margin-top: 20px;
+  top: 50%;
+
 }
+
+.page-button {
+  height: 100vh;
+  text-align: center;
+  position: relative;
+}
+
 .background {
-  width: 100px;
-  height: 100px;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
 }
 
 .form-control {
