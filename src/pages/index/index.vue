@@ -2,7 +2,7 @@
   <div class="container" >
     <image class="background" src="/static/image/first-page-mini.png"/>
     <div class="page-button" >
-        <button class="button" open-type="getUserInfo" @click="toMyFarm()">{{text}}</button>
+        <button class="button" @click="toMyFarm()">{{text}}</button>
         <button class="button" open-type="share">{{inviteFriend1}}</button>
     </div>
   </div>
@@ -45,21 +45,19 @@ export default {
         success: () => {
           wx.getUserInfo({
             success: (res) => {
-              console.log(res)
-              this.userInfo = res.userInfo
+              this.userInfo = res.rawData
             }
           })
         }
       })
     },
     toMyFarm () {
-      let userInfo = '111'
-      console.log(userInfo.nickName)
+      var userInfoStr = this.userInfo
       wx.request({
         url: 'http://localhost:5050/home/index',
-        data: {
-          nickName: userInfo
-        },
+        method: 'post',
+        dataType: 'json',
+        data: JSON.parse(userInfoStr),
         header: {
           'content-type': 'application/json' // 默认值
         },
@@ -67,6 +65,9 @@ export default {
           console.log(res.data)
         }
       })
+    },
+    bindGetUserInfo (e) {
+      console.log(e.detail.userInfo)
     }
   },
   onShareAppMessage (result) {
