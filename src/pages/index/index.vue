@@ -2,7 +2,7 @@
   <div class="container" >
     <image class="background" src="/static/image/first-page.png"/>
     <div class="page-button" >
-        <button class="button" @click="toMyFarm()">{{text}}</button>
+        <button class="button" open-type="getUserInfo" @click="toMyFarm()">{{text}}</button>
         <button class="button" open-type="share">{{inviteFriend1}}</button>
     </div>
   </div>
@@ -54,7 +54,7 @@ export default {
     toMyFarm () {
       var userInfoStr = this.userInfo
       wx.request({
-        url: 'http://localhost:5050/home/index',
+        url: 'http://anbygk.natappfree.cc/home/index',
         method: 'post',
         dataType: 'json',
         data: JSON.parse(userInfoStr),
@@ -62,7 +62,9 @@ export default {
           'content-type': 'application/json' // 默认值
         },
         success: (res) => {
-          console.log(res.data)
+          wx.redirectTo({
+            url: '/pages/center/main'
+          })
         }
       })
     },
