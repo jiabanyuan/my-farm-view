@@ -1,6 +1,6 @@
 <template>
   <div class="container" >
-    <image class="background" src="/static/image/first-page-mini.png"/>
+    <image class="background" src="/static/image/first-page.png"/>
     <div class="page-button" >
         <button class="button" @click="toMyFarm()">{{text}}</button>
         <button class="button" open-type="share">{{inviteFriend1}}</button>
